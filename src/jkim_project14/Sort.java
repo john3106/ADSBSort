@@ -5,6 +5,7 @@ public class Sort {
 	
 	
 	static int linearSearch() {
+		return 0;
 		
 	}
 

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class SortRunner {
 	
-	private static Object[] arr1;
+	private static String[] arr1;
 	private static ArrayList<String> arrList = new ArrayList<String>();
 	private static void readUsingScanner(String fileName) throws IOException {
 	       Path path = Paths.get(fileName);
@@ -22,7 +22,7 @@ public class SortRunner {
 	            arrList.add(line);
 	        }
 	        scanner.close();
-	        arr1 = arrList.toArray();
+	        arr1 =  arrList.toArray(new String[]{});
 	    }
 	 
 	 public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package jkim_project14;
 
+// https://docs.google.com/document/d/1FGWa1GQQVovlErmmdl75gi1JWbKwbETIMaod9ZKUiXc/edit
+
 import java.util.Arrays;
 
 public class Sort {
@@ -29,6 +31,33 @@ public class Sort {
 		return -1;
 	}
 	
+	static int jumpSearch(String[] arr, String s) {
+		// Find the optimal block size
+		int step = (int) Math.round(Math.sqrt(arr.length));
+		int b = step;
+		int a = 0;
+		int n = arr.length;
+
+		while (arr[Math.min(b,n)-1].compareTo(s) < 0) {
+			a = b;
+			b += step;
+			if (a >= n) {
+				return -1;
+			}
+		}
+		while (arr[a].compareTo(s)<0) {
+			a++;
+			if (a == Math.min(b,n)) {
+				return -1;
+			}
+		}
+		if (arr[a].equals(s)) {
+			return a;
+		} else {
+			return -1;
+		}
+	}
+
 	static int jumpSearch(String[] arr, String s) {
 		// Find the optimal block size
 		int step = (int) Math.round(Math.sqrt(arr.length));

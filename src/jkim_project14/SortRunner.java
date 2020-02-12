@@ -22,20 +22,26 @@ public class SortRunner {
 	            arrList.add(line);
 	        }
 	        scanner.close();
-	        arr1 =  arrList.toArray(new String[]{});
 	    }
 	 
 	 public static void main(String[] args) {
 		 try {
-			readUsingScanner("source.txt");
+			readUsingScanner("words.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 System.out.println(Arrays.toString(arr1));
-		 System.out.println(Sort.linearSearch(arr1, "2"));
-		 System.out.println(Sort.binarySearch(arr1,  0,  arr1.length-1, "2"));
-		 
-		 
+//		 arrList.sort();
+		 arr1 =  arrList.toArray(new String[]{});
+
+		 Arrays.sort(arr1);
+		 System.out.println("Array length: " + arr1.length); //Arrays.toString(arr1));
+
+		 String word = "insulation";
+		 System.out.println(Sort.linearSearch(arr1, word));
+
+//		 System.out.println(Sort.binarySearch(arr1,  0,  arr1.length-1, "2"));
+
+		 System.out.println(Sort.jumpSearch(arr1, word));
 	 }
 }

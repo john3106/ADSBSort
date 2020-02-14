@@ -35,12 +35,13 @@ public class SortRunner {
 //		 arrList.sort();
 		 arr1 =  arrList.toArray(new String[]{});
 
+		 Collections.sort(arrList);
 		 Arrays.sort(arr1);
 		 System.out.println("Array length: " + arr1.length); //Arrays.toString(arr1));
 
-		 String word = "insulation";
-		 System.out.println("Linear Search: "+Sort.linearSearch(arr1, word));
-		 System.out.println("Binary Search: "+Sort.binarySearch(arr1,  0,  arr1.length-1, word));
+		 String word = "african wild dog";
+		 System.out.println("Linear Search: "+Sort.linearSearch(arrList, word));
+		 System.out.println("Binary Search: "+Sort.binarySearch(arrList,  0,  arrList.size()-1, word));
 		 System.out.println("Jump Search: "+Sort.jumpSearch(arr1, word));
 		 
 		 
@@ -49,6 +50,7 @@ public class SortRunner {
 		 String[] arrShuffle = arrList.toArray(new String[]{});
 		 System.out.println(Arrays.deepToString(arrShuffle));
 		 System.out.println("Bubble Sort: ");
-		 System.out.println(Arrays.deepToString(Sort.bubbleSort(arrShuffle, "descending")));
+		 System.out.println((Sort.bubbleSort(arrList, "descending")).toString());
+		 System.out.println(Sort.mergeSort(arrList, arrList.size()-1,  0,  "hi"));
 	 }
 }

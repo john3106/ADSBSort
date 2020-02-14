@@ -1,31 +1,34 @@
 package jkim_project14;
 
+import java.util.ArrayList;
+
 // https://docs.google.com/document/d/1FGWa1GQQVovlErmmdl75gi1JWbKwbETIMaod9ZKUiXc/edit
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Sort {
 
-	static int linearSearch(String[] arr, String word) {
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i].equalsIgnoreCase(word)) {
+	static int linearSearch(ArrayList<String> arr, String word) {
+		for (int i = 0; i < arr.size(); i++) {
+			if (arr.get(i).equalsIgnoreCase(word)) {
 				return i;
 			}
 		}
 		return -1;
 	}
 
-	static int binarySearch(String[] arr, int start, int end, String word) {
-		if (start >= end) {
+	static int binarySearch(ArrayList<String> arrList, int start, int end, String word) {
+		if (start <= end) {
 			int middle = (start+end)/2;
-			if (arr[middle].equalsIgnoreCase(word)) {
+			if (arrList.get(middle).equalsIgnoreCase(word)) {
 				return middle;
 			}
-			if ((arr[middle].compareToIgnoreCase(word)) > 0) {
-				return binarySearch(arr, start, middle - 1, word);
+			if ((arrList.get(middle).compareToIgnoreCase(word)) > 0) {
+				return binarySearch(arrList, start, middle - 1, word);
 			}
 
-			return binarySearch(arr, middle + 1, end, word);
+			return binarySearch(arrList, middle + 1, end, word);
 
 		}
 		return -1;
@@ -38,20 +41,20 @@ public class Sort {
 		int a = 0;
 		int n = arr.length;
 
-		while (arr[Math.min(b,n)-1].compareTo(s) < 0) {
+		while (arr[Math.min(b,n)-1].compareToIgnoreCase(s) < 0) {
 			a = b;
 			b += step;
 			if (a >= n) {
 				return -1;
 			}
 		}
-		while (arr[a].compareTo(s)<0) {
+		while (arr[a].compareToIgnoreCase(s)<0) {
 			a++;
 			if (a == Math.min(b,n)) {
 				return -1;
 			}
 		}
-		if (arr[a].equals(s)) {
+		if (arr[a].equalsIgnoreCase(s)) {
 			return a;
 		} else {
 			return -1;
@@ -59,24 +62,22 @@ public class Sort {
 	}
 	
 	
-	static String[] bubbleSort(String[] arr, String k) {
+	static ArrayList<String> bubbleSort(ArrayList<String> arr, String k) {
 		int count = 0;
-		for (int i = 0; i < arr.length-1; i++) {
-			if (k.equalsIgnoreCase("ascending")) {
-				if (arr[i].compareToIgnoreCase(arr[i+1]) > 0) {
-					String replace = arr[i];
-					arr[i] = arr[i+1];
-					arr[i+1] = replace;
-					count++;
-				}
-			}
-			if (k.equalsIgnoreCase("descending")) {
-				if (arr[i].compareTo(arr[i+1]) < 0) {
-					String replace = arr[i];
-					arr[i]  = arr[i+1];
-					arr[i+1] = replace;
-					count++;
-				}
+		int order = 0;
+		if (k.equalsIgnoreCase("ascending")) {
+			order = 1;
+		}
+		else if (k.equalsIgnoreCase("descending")) {
+			order = -1;
+		}
+		
+		for (int i = 0; i < arr.size()-1; i++) {
+			if (order*(arr.get(i).compareToIgnoreCase(arr.get(i+1))) > 0) {
+				String replace = arr.get(i);
+				arr.set(i, arr.get(i+1));
+				arr.set(i+1, replace);
+				count++;
 			}
 		}
 		if (count > 0) {
@@ -84,6 +85,31 @@ public class Sort {
 		}
 		return arr;
 	}
+	
+	static ArrayList<String> mergeSort(ArrayList<String> arr, int l, int r, String k) {
+		if (l > r) {
+			int middle = (l+r)/2;
+			ArrayList<String> smallerList = new ArrayList<String> (arr.subList(r, middle));
+			ArrayList<String> largerList  = new ArrayList<String> (arr.subList(middle+1,  l));
+			mergeSort(smallerList, middle, r, k);
+			mergeSort(largerList, l, middle, k);
+		}
+		/*
+		else {
+			merger(arr, l, r);
+		}
+		*/
+		System.out.println(arr.toString());
+		return arr;
+	}
+	
+	static void merger(ArrayList<String> arr, int l, int r) {
+		
+	}
+	
+	
+	
+
 	
 
 }

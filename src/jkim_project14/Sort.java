@@ -16,7 +16,7 @@ public class Sort {
 	}
 
 	static int binarySearch(String[] arr, int start, int end, String word) {
-		if (end >= 1) {
+		if (start >= end) {
 			int middle = (start+end)/2;
 			if (arr[middle].equalsIgnoreCase(word)) {
 				return middle;
@@ -57,5 +57,33 @@ public class Sort {
 			return -1;
 		}
 	}
+	
+	
+	static String[] bubbleSort(String[] arr, String k) {
+		int count = 0;
+		for (int i = 0; i < arr.length-1; i++) {
+			if (k.equalsIgnoreCase("ascending")) {
+				if (arr[i].compareToIgnoreCase(arr[i+1]) > 0) {
+					String replace = arr[i];
+					arr[i] = arr[i+1];
+					arr[i+1] = replace;
+					count++;
+				}
+			}
+			if (k.equalsIgnoreCase("descending")) {
+				if (arr[i].compareTo(arr[i+1]) < 0) {
+					String replace = arr[i];
+					arr[i]  = arr[i+1];
+					arr[i+1] = replace;
+					count++;
+				}
+			}
+		}
+		if (count > 0) {
+			bubbleSort(arr, k);
+		}
+		return arr;
+	}
+	
 
 }

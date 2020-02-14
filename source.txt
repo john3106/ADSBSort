@@ -3,8 +3,6 @@ Amur Leopard
 Amur Tiger
 Asian Elephant
 Aye-aye
-Amur leopard
-Amur leopard
 Bengal Tiger
 Black Rhino
 Black-footed Ferret
@@ -21,8 +19,6 @@ Desert Pupfish
 Dhole
 Eastern Lowland Gorilla
 Fin Whale
-Florida Panther
-Florida Panther
 Florida Panther
 Galapagos Penguin
 Giant Kangaroo Rat

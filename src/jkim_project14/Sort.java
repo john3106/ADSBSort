@@ -2,6 +2,7 @@ package jkim_project14;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 // Project Description: https://docs.google.com/document/d/1FGWa1GQQVovlErmmdl75gi1JWbKwbETIMaod9ZKUiXc/edit
@@ -104,26 +105,45 @@ public class Sort {
 	}
 
 	// arr is the input and k is the number of buckets to create
-	static String[] buckSort(String[] arr, int k) {
-		ArrayList<ArrayList<String>> buckets = new ArrayList<ArrayList<String>>();
-		// buck
-		for (int i = 0; i < arr.length; i++) {
-			// buckets.get(Math.floor(k * arr[i])).add(arr[i]);
-		}
-		return new String[] {};
+	// static String[] buckSort(String[] arr, int k) {
+	// ArrayList<ArrayList<String>> buckets = new ArrayList<ArrayList<String>>();
+	// // buck
+	// for (int i = 0; i < arr.length; i++) {
+	// // buckets.get(Math.floor(k * arr[i])).add(arr[i]);
+	// }
+	// return new String[] {};
+	// }
+
+	// ArrayList<String>
+
+	// quicksort returns a new sorted ArrayList
+	static ArrayList<String> quicksort(ArrayList<String> A, int lo, int hi) {
+		ArrayList<String> l = new ArrayList<String>(A);
+		quicksort_internal(l, lo, hi);
+		return l;
 	}
 
-	// static String[] quicksort(String[] A, String lo, String hi) {
-	// if (lo.compareTo(hi) < 0) {
-	// String p = partition(A, lo, hi);
-	// quicksort(A, lo, p - 1);
-	// quicksort(A, p + 1, hi);
-	// }
-	// }
+	// quicksort_internal does an in-place sort of the provided ArrayList A
+	private static void quicksort_internal(ArrayList<String> A, int lo, int hi) {
+		if (lo < hi) {
+			int p = partitionIndex(A, lo, hi);
+			quicksort_internal(A, lo, p - 1);
+			quicksort_internal(A, p + 1, hi);
+		}
+	}
 
-	// private static String partition(String[] a, String lo, String hi) {
-
-	// }
+	private static int partitionIndex(ArrayList<String> a, int lo, int hi) {
+		String pivot = a.get(hi);
+		int i = (lo - 1);
+		for (int j = lo; j < hi - 1; j++) {
+			if (a.get(j).compareToIgnoreCase(pivot) < 0) {
+				i++;
+				Collections.swap(a, i, j);
+			}
+		}
+		Collections.swap(a, i + 1, hi);
+		return (i + 1);
+	}
 
 	// algorithm quicksort(A, lo, hi) is
 	// if lo < hi then

@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class SortRunner {
@@ -26,7 +27,7 @@ public class SortRunner {
 	 
 	 public static void main(String[] args) {
 		 try {
-			readUsingScanner("words.txt");
+			readUsingScanner("source.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,14 +35,22 @@ public class SortRunner {
 //		 arrList.sort();
 		 arr1 =  arrList.toArray(new String[]{});
 
+		 Collections.sort(arrList);
 		 Arrays.sort(arr1);
 		 System.out.println("Array length: " + arr1.length); //Arrays.toString(arr1));
 
-		 String word = "insulation";
-
-		 System.out.println(Sort.linearSearch(arr1, word));
-		 System.out.println(Sort.binarySearch(arr1,  0,  arr1.length-1, "2"));
-		//  System.out.println(Sort.jumpSearch(arr1, word));
-		// pick your own search
+		 String word = "african wild dog";
+		 System.out.println("Linear Search: "+Sort.linearSearch(arrList, word));
+		 System.out.println("Binary Search: "+Sort.binarySearch(arrList,  0,  arrList.size()-1, word));
+		 System.out.println("Jump Search: "+Sort.jumpSearch(arr1, word));
+		 
+		 
+		 //Randomize list for sorting methods
+		 Collections.shuffle(arrList);
+		 String[] arrShuffle = arrList.toArray(new String[]{});
+		 System.out.println(Arrays.deepToString(arrShuffle));
+		 System.out.println("Bubble Sort: ");
+		 System.out.println((Sort.bubbleSort(arrList, "descending")).toString());
+		 System.out.println(Sort.mergeSort(arrList, arrList.size()-1,  0,  "hi"));
 	 }
 }

@@ -40,26 +40,27 @@ public class SortRunner {
 		Arrays.sort(arr1);
 		System.out.println("Array length: " + arr1.length); // Arrays.toString(arr1));
 
+		String word = "african wild dog";
+		System.out.println("Linear Search: " + Sort.linearSearch(arrList, word));
+		System.out.println("Binary Search: " + Sort.binarySearch(arrList, 0, arrList.size() - 1, word));
+		System.out.println("Jump Search: " + Sort.jumpSearch(arr1, word));
 
-		 String word = "african wild dog";
-		 System.out.println("Linear Search: "+Sort.linearSearch(arrList, word));
-		 System.out.println("Binary Search: "+Sort.binarySearch(arrList,  0,  arrList.size()-1, word));
-		 System.out.println("Jump Search: "+Sort.jumpSearch(arr1, word));
-		 
-		 
-		 //Randomize list for sorting methods
-		 Collections.shuffle(arrList);
-		 String[] arrShuffle = arrList.toArray(new String[]{});
-		 System.out.println("\n\n\n");
-		 System.out.println(arrList);
-		 System.out.println("Bubble Sort: ");
-		 System.out.println((Sort.bubbleSort(arrList, "ascending")));
-		 System.out.println("Merge Sort: ");
-		 Collections.shuffle(arrList);
-		 System.out.println(arrList);
-		 System.out.println(Sort.mergeSort(arrList,  0,  arrList.size()-1, "ascending"));
-	 
+		// Randomize list for sorting methods
+		// Collections.shuffle(arrList);
+		// String[] arrShuffle = arrList.toArray(new String[] {});
+		System.out.println("\n\n\n");
+		System.out.println(arrList);
+		System.out.println("Bubble Sort: ");
+		System.out.println((Sort.bubbleSort(arrList, "ascending")));
+		System.out.println("Merge Sort: ");
+		Collections.shuffle(arrList);
+		System.out.println(arrList);
+		System.out.println(Sort.mergeSort(arrList, 0, arrList.size() - 1, "ascending"));
 
+		System.out.println("QuickSort: ");
 		System.out.println(Sort.quicksort(arrList, 0, arrList.size() - 1));
+
+		System.out.println("Selection Sort: ");
+		System.out.println(Sort.selectionSort(arrList));
 	}
 }

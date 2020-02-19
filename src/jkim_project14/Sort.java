@@ -85,7 +85,6 @@ public class Sort {
 		return arr;
 	}
 
-	
 	static ArrayList<String> mergeSort(ArrayList<String> arr, int start, int end, String k) {
 		if (end > start) {
 			int middle = (start + end) / 2;
@@ -98,39 +97,38 @@ public class Sort {
 	}
 
 	static void merger(ArrayList<String> arr, int start, int middle, int end) {
-		ArrayList<String> list1 = new ArrayList<String> (arr.subList(start, middle+1));
-		ArrayList<String> list2 = new ArrayList<String> (arr.subList(middle+1, end+1));
-		System.out.println(start+", "+middle+", "+end);
-		System.out.println(list1+"\n"+list2);
+		ArrayList<String> list1 = new ArrayList<String>(arr.subList(start, middle + 1));
+		ArrayList<String> list2 = new ArrayList<String>(arr.subList(middle + 1, end + 1));
+		System.out.println(start + ", " + middle + ", " + end);
+		System.out.println(list1 + "\n" + list2);
 		int listSize1 = list1.size();
 		int listSize2 = list2.size();
 		int i = 0;
 		int j = 0;
 		int k = 0;
 		while (i < listSize1 && j < listSize2) {
-				if (list1.get(i).compareToIgnoreCase(list2.get(j)) <= 0) {
-						arr.set(k, list1.get(i));
-						i++;
-					}
-				else {
-					arr.set(k, list2.get(j));
-					j++;
-				}
-				k++;
+			if (list1.get(i).compareToIgnoreCase(list2.get(j)) <= 0) {
+				arr.set(k, list1.get(i));
+				i++;
+			} else {
+				arr.set(k, list2.get(j));
+				j++;
+			}
+			k++;
 		}
-	
+
 		while (i < listSize1) {
 			arr.set(k, list1.get(i));
 			i++;
 			k++;
 		}
-	
+
 		while (j < listSize2) {
 			arr.set(k, list2.get(j));
 			j++;
 			k++;
 		}
-		
+
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -138,14 +136,12 @@ public class Sort {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	static ArrayList<String> insertionSort(ArrayList<String> arr, String k) {
 		return arr;
-		
+
 	}
-	
-	
+
 	static void merger(ArrayList<String> arr, int l, int r) {
 
 	}
@@ -206,5 +202,28 @@ public class Sort {
 	// i := i + 1
 	// swap A[i] with A[hi]
 	// return i
+
+	static ArrayList<String> selectionSort(ArrayList<String> A) {
+		ArrayList<String> l = new ArrayList<String>(A);
+		selectionSortInternal(l);
+		return l;
+	}
+
+	private static void selectionSortInternal(ArrayList<String> A) {
+		int n = A.size();
+		for (int i = 0; i < n; i++) {
+			int min = i;
+
+			for (int j = i + 1; j < n; j++) {
+				if (A.get(j).compareTo(A.get(min)) < 0) {
+					min = j;
+				}
+			}
+
+			if (min != i) {
+				Collections.swap(A, min, i);
+			}
+		}
+	}
 
 }

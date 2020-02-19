@@ -48,9 +48,13 @@ public class SortRunner {
 		 //Randomize list for sorting methods
 		 Collections.shuffle(arrList);
 		 String[] arrShuffle = arrList.toArray(new String[]{});
-		 System.out.println(Arrays.deepToString(arrShuffle));
+		 System.out.println("\n\n\n");
+		 System.out.println(arrList);
 		 System.out.println("Bubble Sort: ");
-		 System.out.println((Sort.bubbleSort(arrList, "descending")).toString());
-		 System.out.println(Sort.mergeSort(arrList, arrList.size()-1,  0,  "hi"));
+		 System.out.println((Sort.bubbleSort(arrList, "ascending")));
+		 System.out.println("Merge Sort: ");
+		 Collections.shuffle(arrList);
+		 System.out.println(arrList);
+		 System.out.println(Sort.mergeSort(arrList,  0,  arrList.size()-1, "ascending"));
 	 }
 }

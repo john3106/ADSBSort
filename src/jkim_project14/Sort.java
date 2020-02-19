@@ -86,27 +86,65 @@ public class Sort {
 		return arr;
 	}
 	
-	static ArrayList<String> mergeSort(ArrayList<String> arr, int l, int r, String k) {
-		if (l > r) {
-			int middle = (l+r)/2;
-			ArrayList<String> smallerList = new ArrayList<String> (arr.subList(r, middle));
-			ArrayList<String> largerList  = new ArrayList<String> (arr.subList(middle+1,  l));
-			mergeSort(smallerList, middle, r, k);
-			mergeSort(largerList, l, middle, k);
+
+	
+	static ArrayList<String> mergeSort(ArrayList<String> arr, int start, int end, String k) {
+		if (end > start) {
+			int middle = (start + end) / 2;
+			mergeSort(arr, start, middle, k);
+			mergeSort(arr, middle + 1, end, k);
+			merger(arr, start, middle, end);
 		}
-		/*
-		else {
-			merger(arr, l, r);
-		}
-		*/
-		System.out.println(arr.toString());
 		return arr;
 	}
+
+	static void merger(ArrayList<String> arr, int start, int middle, int end) {
+		ArrayList<String> list1 = new ArrayList<String> (arr.subList(start, middle+1));
+		ArrayList<String> list2 = new ArrayList<String> (arr.subList(middle+1, end+1));
+		System.out.println(start+", "+middle+", "+end);
+		System.out.println(list1+"\n"+list2);
+		int listSize1 = list1.size();
+		int listSize2 = list2.size();
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		while (i < listSize1 && j < listSize2) {
+				if (list1.get(i).compareToIgnoreCase(list2.get(j)) <= 0) {
+						arr.set(k, list1.get(i));
+						i++;
+					}
+				else {
+					arr.set(k, list2.get(j));
+					j++;
+				}
+				k++;
+		}
 	
-	static void merger(ArrayList<String> arr, int l, int r) {
+		while (i < listSize1) {
+			arr.set(k, list1.get(i));
+			i++;
+			k++;
+		}
+	
+		while (j < listSize2) {
+			arr.set(k, list2.get(j));
+			j++;
+			k++;
+		}
 		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
+	
+	static ArrayList<String> insertionSort(ArrayList<String> arr, String k) {
+		return arr;
+		
+	}
 	
 	
 

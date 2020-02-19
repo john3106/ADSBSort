@@ -1,7 +1,9 @@
 package jkim_project14;
 
-// https://docs.google.com/document/d/1FGWa1GQQVovlErmmdl75gi1JWbKwbETIMaod9ZKUiXc/edit
+// Project Description: https://docs.google.com/document/d/1FGWa1GQQVovlErmmdl75gi1JWbKwbETIMaod9ZKUiXc/edit
+// Role assignments: https://docs.google.com/document/d/14w5kx63BC7bXkn66zRQG84cMu7xV_xrHv-03AYLTxRM/edit
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sort {
@@ -39,16 +41,16 @@ public class Sort {
 		int a = 0;
 		int n = arr.length;
 
-		while (arr[Math.min(b,n)-1].compareTo(s) < 0) {
+		while (arr[Math.min(b, n) - 1].compareTo(s) < 0) {
 			a = b;
 			b += step;
 			if (a >= n) {
 				return -1;
 			}
 		}
-		while (arr[a].compareTo(s)<0) {
+		while (arr[a].compareTo(s) < 0) {
 			a++;
-			if (a == Math.min(b,n)) {
+			if (a == Math.min(b, n)) {
 				return -1;
 			}
 		}
@@ -58,5 +60,43 @@ public class Sort {
 			return -1;
 		}
 	}
+
+	// arr is the input and k is the number of buckets to create
+	static String[] buckSort(String[] arr, int k) {
+		ArrayList<ArrayList<String>> buckets = new ArrayList<ArrayList<String>>();
+		// buck
+		for (int i = 0; i < arr.length; i++) {
+			// buckets.get(Math.floor(k * arr[i])).add(arr[i]);
+		}
+		return new String[] {};
+	}
+
+	// static String[] quicksort(String[] A, String lo, String hi) {
+	// 	if (lo.compareTo(hi) < 0) {
+	// 		String p = partition(A, lo, hi);
+	// 		quicksort(A, lo, p - 1);
+	// 		quicksort(A, p + 1, hi);
+	// 	}
+	// }
+
+	// private static String partition(String[] a, String lo, String hi) {
+		
+	// }
+
+	// algorithm quicksort(A, lo, hi) is
+	// if lo < hi then
+	// p := partition(A, lo, hi)
+	// quicksort(A, lo, p - 1)
+	// quicksort(A, p + 1, hi)
+	//
+	// algorithm partition(A, lo, hi) is
+	// pivot := A[hi]
+	// i := lo
+	// for j := lo to hi do
+	// if A[j] < pivot then
+	// swap A[i] with A[j]
+	// i := i + 1
+	// swap A[i] with A[hi]
+	// return i
 
 }

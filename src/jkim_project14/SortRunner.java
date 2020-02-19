@@ -38,10 +38,10 @@ public class SortRunner {
 		 System.out.println("Array length: " + arr1.length); //Arrays.toString(arr1));
 
 		 String word = "insulation";
+
 		 System.out.println(Sort.linearSearch(arr1, word));
-
-//		 System.out.println(Sort.binarySearch(arr1,  0,  arr1.length-1, "2"));
-
-		 System.out.println(Sort.jumpSearch(arr1, word));
+		 System.out.println(Sort.binarySearch(arr1,  0,  arr1.length-1, "2"));
+		//  System.out.println(Sort.jumpSearch(arr1, word));
+		// pick your own search
 	 }
 }

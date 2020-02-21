@@ -85,6 +85,7 @@ public class Sort {
 		return arr;
 	}
 
+
 	
 	static void mergeSort(ArrayList<String> arr, int n, String k) {
 		if (n < 2) {
@@ -108,6 +109,7 @@ public class Sort {
 		int i = 0;
 		int j = 0;
 		int k = 0;
+
 		int multiplier = 0;
 		if (order.equalsIgnoreCase("descending")) {
 			multiplier = -1;
@@ -122,6 +124,7 @@ public class Sort {
 			}
 			else {
 				arr.set(k, r.get(j));
+
 				j++;
 			}
 			k++;
@@ -135,17 +138,17 @@ public class Sort {
 	
 		while (j < right) {
 			arr.set(k, r.get(j));
+
 			j++;
 			k++;
 		}
+
 	}
-	
-	
+
 	static ArrayList<String> insertionSort(ArrayList<String> arr, String k) {
 		return arr;
-		
+
 	}
-	
 
 
 	// arr is the input and k is the number of buckets to create
@@ -204,5 +207,28 @@ public class Sort {
 	// i := i + 1
 	// swap A[i] with A[hi]
 	// return i
+
+	static ArrayList<String> selectionSort(ArrayList<String> A) {
+		ArrayList<String> l = new ArrayList<String>(A);
+		selectionSortInternal(l);
+		return l;
+	}
+
+	private static void selectionSortInternal(ArrayList<String> A) {
+		int n = A.size();
+		for (int i = 0; i < n; i++) {
+			int min = i;
+
+			for (int j = i + 1; j < n; j++) {
+				if (A.get(j).compareTo(A.get(min)) < 0) {
+					min = j;
+				}
+			}
+
+			if (min != i) {
+				Collections.swap(A, min, i);
+			}
+		}
+	}
 
 }

@@ -39,8 +39,6 @@ public class SortRunner {
 		Collections.sort(arrList);
 		Arrays.sort(arr1);
 		System.out.println("Array length: " + arr1.length); // Arrays.toString(arr1));
-
-
 		 String word = "african wild dog";
 		 System.out.println("Linear Search: "+Sort.linearSearch(arrList, word));
 		 System.out.println("Binary Search: "+Sort.binarySearch(arrList,  0,  arrList.size()-1, word));
@@ -48,18 +46,24 @@ public class SortRunner {
 		 
 		 
 		 //Randomize list for sorting methods
+
 		 Collections.shuffle(arrList);
 		 String[] arrShuffle = arrList.toArray(new String[]{});
-		 System.out.println("\n\n\n");
+
 		 System.out.println(arrList);
 		 System.out.println("Bubble Sort: ");
-		 System.out.println((Sort.bubbleSort(arrList, "ascending")));
+		 System.out.println((Sort.bubbleSort(arrList, "descending")));
+		 
+		 System.out.println("Quick Sort: ");
+		 Collections.shuffle(arrList);
+		 System.out.println(Sort.quicksort(arrList, 0, arrList.size() - 1));
+		 
 		 System.out.println("Merge Sort: ");
 		 Collections.shuffle(arrList);
+		 Sort.mergeSort(arrList, arrList.size(), "descending");
 		 System.out.println(arrList);
-		 System.out.println(Sort.mergeSort(arrList,  0,  arrList.size()-1, "ascending"));
-	 
-
-		System.out.println(Sort.quicksort(arrList, 0, arrList.size() - 1));
+		 
+		 System.out.println("Insertion Sort: ");
+		 
 	}
 }

@@ -86,56 +86,57 @@ public class Sort {
 	}
 
 	
-	static ArrayList<String> mergeSort(ArrayList<String> arr, int start, int end, String k) {
-		if (end > start) {
-			int middle = (start + end) / 2;
-			mergeSort(arr, start, middle, k);
-			mergeSort(arr, middle + 1, end, k);
-			merger(arr, start, middle, end);
+	static void mergeSort(ArrayList<String> arr, int n, String k) {
+		if (n < 2) {
+			return;
 		}
-
-		return arr;
+		int middle = n / 2;
+		ArrayList<String> left = new ArrayList<String> (middle);
+		ArrayList<String> right = new ArrayList<String> (n-middle);
+		for (int i = 0; i < middle; i++) {
+			left.add(arr.get(i));
+		}
+		for (int i = middle; i < n; i++) {
+			right.add(i-middle, arr.get(i));
+		}
+		mergeSort(left, middle, k);
+		mergeSort(right, n-middle, k);
+		merger(arr, left, right, middle, n-middle, k);
 	}
 
-	static void merger(ArrayList<String> arr, int start, int middle, int end) {
-		ArrayList<String> list1 = new ArrayList<String> (arr.subList(start, middle+1));
-		ArrayList<String> list2 = new ArrayList<String> (arr.subList(middle+1, end+1));
-		System.out.println(start+", "+middle+", "+end);
-		System.out.println(list1+"\n"+list2);
-		int listSize1 = list1.size();
-		int listSize2 = list2.size();
+	static void merger(ArrayList<String> arr, ArrayList<String> l, ArrayList<String> r, int left, int right, String order) {
 		int i = 0;
 		int j = 0;
 		int k = 0;
-		while (i < listSize1 && j < listSize2) {
-				if (list1.get(i).compareToIgnoreCase(list2.get(j)) <= 0) {
-						arr.set(k, list1.get(i));
-						i++;
-					}
-				else {
-					arr.set(k, list2.get(j));
-					j++;
-				}
-				k++;
+		int multiplier = 0;
+		if (order.equalsIgnoreCase("descending")) {
+			multiplier = -1;
+		}
+		else {
+			multiplier = 1;
+		}
+		while (i < left && j < right) {
+			if (multiplier*(l.get(i).compareToIgnoreCase(r.get(j))) <= 0) {
+					arr.set(k, l.get(i));
+					i++;
+			}
+			else {
+				arr.set(k, r.get(j));
+				j++;
+			}
+			k++;
 		}
 	
-		while (i < listSize1) {
-			arr.set(k, list1.get(i));
+		while (i < left) {
+			arr.set(k, l.get(i));
 			i++;
 			k++;
 		}
 	
-		while (j < listSize2) {
-			arr.set(k, list2.get(j));
+		while (j < right) {
+			arr.set(k, r.get(j));
 			j++;
 			k++;
-		}
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	
@@ -145,10 +146,7 @@ public class Sort {
 		
 	}
 	
-	
-	static void merger(ArrayList<String> arr, int l, int r) {
 
-	}
 
 	// arr is the input and k is the number of buckets to create
 	// static String[] buckSort(String[] arr, int k) {

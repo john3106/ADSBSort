@@ -85,27 +85,26 @@ public class Sort {
 		return arr;
 	}
 
-
-	
 	static void mergeSort(ArrayList<String> arr, int n, String k) {
 		if (n < 2) {
 			return;
 		}
 		int middle = n / 2;
-		ArrayList<String> left = new ArrayList<String> (middle);
-		ArrayList<String> right = new ArrayList<String> (n-middle);
+		ArrayList<String> left = new ArrayList<String>(middle);
+		ArrayList<String> right = new ArrayList<String>(n - middle);
 		for (int i = 0; i < middle; i++) {
 			left.add(arr.get(i));
 		}
 		for (int i = middle; i < n; i++) {
-			right.add(i-middle, arr.get(i));
+			right.add(i - middle, arr.get(i));
 		}
 		mergeSort(left, middle, k);
-		mergeSort(right, n-middle, k);
-		merger(arr, left, right, middle, n-middle, k);
+		mergeSort(right, n - middle, k);
+		merger(arr, left, right, middle, n - middle, k);
 	}
 
-	static void merger(ArrayList<String> arr, ArrayList<String> l, ArrayList<String> r, int left, int right, String order) {
+	static void merger(ArrayList<String> arr, ArrayList<String> l, ArrayList<String> r, int left, int right,
+			String order) {
 		int i = 0;
 		int j = 0;
 		int k = 0;
@@ -113,29 +112,27 @@ public class Sort {
 		int multiplier = 0;
 		if (order.equalsIgnoreCase("descending")) {
 			multiplier = -1;
-		}
-		else {
+		} else {
 			multiplier = 1;
 		}
 		while (i < left && j < right) {
-			if (multiplier*(l.get(i).compareToIgnoreCase(r.get(j))) <= 0) {
-					arr.set(k, l.get(i));
-					i++;
-			}
-			else {
+			if (multiplier * (l.get(i).compareToIgnoreCase(r.get(j))) <= 0) {
+				arr.set(k, l.get(i));
+				i++;
+			} else {
 				arr.set(k, r.get(j));
 
 				j++;
 			}
 			k++;
 		}
-	
+
 		while (i < left) {
 			arr.set(k, l.get(i));
 			i++;
 			k++;
 		}
-	
+
 		while (j < right) {
 			arr.set(k, r.get(j));
 
@@ -146,10 +143,27 @@ public class Sort {
 	}
 
 	static ArrayList<String> insertionSort(ArrayList<String> arr, String k) {
+		int length = arr.size();
+		int counter = 0;
+		int multiplier = 0;
+		if (k.equalsIgnoreCase("descending")) {
+			multiplier = -1;
+		} else {
+			multiplier = 1;
+		}
+		while (counter < length) {
+			for (int j = length-1; j > 0; j--) {
+				if (multiplier*(arr.get(j).compareToIgnoreCase(arr.get(j-1))) <= 0) {
+					String changeWord = arr.get(j);
+					arr.set(j, arr.get(j-1));
+					arr.set(j-1, changeWord);
+				}
+			}
+			counter++;
+		}
 		return arr;
 
 	}
-
 
 	// arr is the input and k is the number of buckets to create
 	// static String[] buckSort(String[] arr, int k) {

@@ -50,19 +50,28 @@ public class SortRunner {
 		// Collections.shuffle(arrList);
 		// String[] arrShuffle = arrList.toArray(new String[] {});
 		System.out.println("\n\n\n");
-		System.out.println(arrList);
+		Collections.shuffle(arrList);
+		System.out.println(arrList+"\n");
+		
 		System.out.println("Bubble Sort: ");
-		System.out.println((Sort.bubbleSort(arrList, "ascending")));
+		Collections.shuffle(arrList);
+		System.out.println((Sort.bubbleSort(arrList, "descending")));
+		
 		System.out.println("Merge Sort: ");
 		Collections.shuffle(arrList);
-		System.out.println(arrList);
-		Sort.mergeSort(arrList, arrList.size(), "ascending");
+		Sort.mergeSort(arrList, arrList.size(), "descending");
 		System.out.println(arrList);
 
 		System.out.println("QuickSort: ");
+		Collections.shuffle(arrList);
 		System.out.println(Sort.quicksort(arrList, 0, arrList.size() - 1));
 
 		System.out.println("Selection Sort: ");
+		Collections.shuffle(arrList);
 		System.out.println(Sort.selectionSort(arrList));
+		
+		System.out.println("Insertion Sort: ");
+		Collections.shuffle(arrList);
+		System.out.println(Sort.insertionSort(arrList, "descending"));
 	}
 }

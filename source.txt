@@ -64,8 +64,4 @@ Whale Shark
 White Rhino
 White-Winged Duck
 Whooping Crane
-<<<<<<< HEAD
 Wild Bactrian Camel
-=======
-Wild Bactrian Camel
->>>>>>> branch 'master' of https://github.com/john3106/ADSBSort.git

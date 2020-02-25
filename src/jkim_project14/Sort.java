@@ -63,7 +63,6 @@ public class Sort {
 	}
 
 	static ArrayList<String> bubbleSort(ArrayList<String> arr, String k) {
-		int count = 0;
 		int order = 0;
 		if (k.equalsIgnoreCase("ascending")) {
 			order = 1;
@@ -72,15 +71,13 @@ public class Sort {
 		}
 
 		for (int i = 0; i < arr.size() - 1; i++) {
-			if (order * (arr.get(i).compareToIgnoreCase(arr.get(i + 1))) > 0) {
-				String replace = arr.get(i);
-				arr.set(i, arr.get(i + 1));
-				arr.set(i + 1, replace);
-				count++;
+			for (int j = 0; j < arr.size()-i-1; j++) {
+				if (order * (arr.get(j).compareToIgnoreCase(arr.get(j + 1))) > 0) {
+					String replace = arr.get(j);
+					arr.set(j, arr.get(j + 1));
+					arr.set(j + 1, replace);
+				}
 			}
-		}
-		if (count > 0) {
-			bubbleSort(arr, k);
 		}
 		return arr;
 	}
@@ -144,54 +141,57 @@ public class Sort {
 
 	static ArrayList<String> insertionSort(ArrayList<String> arr, String k) {
 		int length = arr.size();
-		int counter = 0;
 		int multiplier = 0;
 		if (k.equalsIgnoreCase("descending")) {
 			multiplier = -1;
 		} else {
 			multiplier = 1;
 		}
-		while (counter < length) {
-			for (int j = length-1; j > 0; j--) {
-				if (multiplier*(arr.get(j).compareToIgnoreCase(arr.get(j-1))) <= 0) {
-					String changeWord = arr.get(j);
-					arr.set(j, arr.get(j-1));
-					arr.set(j-1, changeWord);
-				}
+		for (int i = 0; i < length; i++) {
+			String word = arr.get(i);
+			int j = i - 1;
+			
+			while (j >= 0 && multiplier*(arr.get(j).compareToIgnoreCase(word))>=0) {
+				arr.set(j+1,  arr.get(j));
+				j--;
 			}
-			counter++;
+			arr.set(j+1, word);
 		}
 		return arr;
 
 	}
 	
-	static ArrayList<String> gnomeSort(ArrayList<String> arr, String k) {
-		int length = arr.size();
-		int i = 1;
+
+	static ArrayList<ArrayList<String>> gnomeSort(ArrayList<ArrayList<String>> arr, String k) {
 		int multiplier = 0;
 		if (k.equalsIgnoreCase("descending")) {
 			multiplier = -1;
 		} else {
 			multiplier = 1;
 		}
-		while (i < length) {
-			if (i > 0) {
-				if (multiplier*(arr.get(i).compareToIgnoreCase(arr.get(i-1))) <= 0) {
-					String changeWord = arr.get(i);
-					arr.set(i, arr.get(i-1));
-					arr.set(i-1,  changeWord);
-					i--;
+		for (int i = 0; i < 2; i++) {
+			int index = 0;
+			int length = arr.get(i).size();
+			while (index < length) {
+				if (index == 0) {
+					index++;
+				}
+				if (multiplier*(arr.get(i).get(index).compareToIgnoreCase(arr.get(i).get(index-1)))>=0) {
+					index++;
 				}
 				else {
-					i++;
+					String replace;
+					replace = arr.get(i).get(index);
+					arr.get(i).set(index,  arr.get(i).get(index-1));
+					arr.get(i).set(index-1, replace);
+					index--;
+					
 				}
-			}
-			else {
-				i++;
 			}
 		}
 		return arr;
 	}
+		
 
 	// arr is the input and k is the number of buckets to create
 	// static String[] buckSort(String[] arr, int k) {
@@ -272,5 +272,7 @@ public class Sort {
 			}
 		}
 	}
+
+
 
 }

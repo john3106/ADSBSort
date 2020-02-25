@@ -73,5 +73,9 @@ public class SortRunner {
 		System.out.println("Insertion Sort: ");
 		Collections.shuffle(arrList);
 		System.out.println(Sort.insertionSort(arrList, "descending"));
+		
+		System.out.println("Gnome Sort: ");
+		Collections.shuffle(arrList);
+		System.out.println(Sort.gnomeSort(arrList, "descending"));
 	}
 }

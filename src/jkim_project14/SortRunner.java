@@ -11,7 +11,10 @@ import java.util.Scanner;
 public class SortRunner {
 
 	private static String[] arr1;
+	private static int counter = 0;
 	private static ArrayList<String> arrList = new ArrayList<String>();
+	private static ArrayList<ArrayList<String>> arrList2d = new ArrayList<ArrayList<String>>();	
+
 
 	private static void readUsingScanner(String fileName) throws IOException {
 		Path path = Paths.get(fileName);
@@ -21,12 +24,20 @@ public class SortRunner {
 		while (scanner.hasNextLine()) {
 			// process each line
 			String line = scanner.nextLine();
-			arrList.add(line);
+			if (counter == 0) {
+				arrList.add(line);
+				arrList2d.get(counter).add(line);
+			}
+			if (counter == 1) {
+				arrList2d.get(counter).add(line);
+			}
 		}
 		scanner.close();
 	}
 
 	public static void main(String[] args) {
+		arrList2d.add(new ArrayList<String>());
+		arrList2d.add(new ArrayList<String>());
 		try {
 			readUsingScanner("source.txt");
 		} catch (IOException e) {
@@ -35,7 +46,16 @@ public class SortRunner {
 		}
 		// arrList.sort();
 		arr1 = arrList.toArray(new String[] {});
-
+		
+		try {
+			counter = 1;
+			readUsingScanner("words.txt");
+		}	catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(arrList2d);
+		
 		Collections.sort(arrList);
 		Arrays.sort(arr1);
 		System.out.println("Array length: " + arr1.length); // Arrays.toString(arr1));
@@ -52,26 +72,68 @@ public class SortRunner {
 		System.out.println("\n\n\n");
 		Collections.shuffle(arrList);
 		System.out.println(arrList+"\n");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println("Bubble Sort: ");
 		Collections.shuffle(arrList);
 		System.out.println((Sort.bubbleSort(arrList, "descending")));
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println("Merge Sort: ");
 		Collections.shuffle(arrList);
 		Sort.mergeSort(arrList, arrList.size(), "descending");
 		System.out.println(arrList);
-
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println("QuickSort: ");
 		Collections.shuffle(arrList);
 		System.out.println(Sort.quicksort(arrList, 0, arrList.size() - 1));
-
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println("Selection Sort: ");
 		Collections.shuffle(arrList);
 		System.out.println(Sort.selectionSort(arrList));
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println("Insertion Sort: ");
 		Collections.shuffle(arrList);
 		System.out.println(Sort.insertionSort(arrList, "descending"));
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Gnome Sort: ");
+		Collections.shuffle(arrList2d.get(0));
+		Collections.shuffle(arrList2d.get(1));
+		System.out.println(arrList2d);
+		System.out.println(Sort.gnomeSort(arrList2d, "descending"));
 	}
 }

@@ -160,6 +160,37 @@ public class Sort {
 		return arr;
 
 	}
+	
+	static ArrayList<ArrayList<String>> gnomeSort(ArrayList<ArrayList<String>> arr, String k) {
+		int index = 0;
+		int multiplier = 0;
+		if (k.equalsIgnoreCase("descending")) {
+			multiplier = -1;
+		} else {
+			multiplier = 1;
+		}
+		for (int i = 0; i < 2; i++) {
+			int length = arr.get(i).size();
+			while (index < length) {
+				if (index == 0) {
+					index++;
+				}
+				if (multiplier*(arr.get(i).get(index).compareToIgnoreCase(arr.get(i).get(index-1)))>=0) {
+					index++;
+				}
+				else {
+					String replace;
+					replace = arr.get(i).get(index);
+					arr.get(i).set(index,  arr.get(i).get(index-1));
+					arr.get(i).set(index-1, replace);
+					index--;
+					
+				}
+			}
+		}
+		return arr;
+		
+	}
 
 	// arr is the input and k is the number of buckets to create
 	// static String[] buckSort(String[] arr, int k) {
@@ -240,5 +271,7 @@ public class Sort {
 			}
 		}
 	}
+
+
 
 }

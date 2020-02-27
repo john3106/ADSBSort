@@ -1,9 +1,8 @@
 package jkim_project14;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 // Project Description: https://docs.google.com/document/d/1FGWa1GQQVovlErmmdl75gi1JWbKwbETIMaod9ZKUiXc/edit
 // Role assignments: https://docs.google.com/document/d/14w5kx63BC7bXkn66zRQG84cMu7xV_xrHv-03AYLTxRM/edit
@@ -192,6 +191,25 @@ public class Sort {
 		
 	}
 
+	private static int toIndex(String in) {
+		int orig = in.toLowerCase().charAt(0) - 97;
+		if (orig < 0 || orig > 27) {
+			orig = 27;
+		}
+		return orig;
+	}
+//	static ArrayList<String> bucketSort(ArrayList<String> in) {
+//		int k = 27;
+//		ArrayList<ArrayList<String>> buckets = new ArrayList<>(k);
+//		for (int i = 0; i < in.size(); i++) {
+//			  buckets.get(toIndex(in.get(i))).add(in.get(i));
+//		 }
+//		for (int j = 0; j < buckets.size(); j++) {
+//			mergeSort(buckets.get(j), buckets.get(j).size(), "");
+//		}
+////		return nil;
+//		return;
+//	}
 	// arr is the input and k is the number of buckets to create
 	// static String[] buckSort(String[] arr, int k) {
 	// ArrayList<ArrayList<String>> buckets = new ArrayList<ArrayList<String>>();
@@ -270,6 +288,35 @@ public class Sort {
 				Collections.swap(A, min, i);
 			}
 		}
+	}
+
+	public static ArrayList<Integer> countingSort(ArrayList<Integer> A) {
+		int k = Collections.max(A) + 1;
+		int n = A.size();
+
+		int[] count = new int[k];
+		for (int i = 0; i < n; i++) {
+			int x = A.get(i);
+			count[x]++;
+		}
+
+		int num_before = 0;
+		for (int i = 0; i < k; i++) {
+			int c = count[(i)];
+			count[i] = num_before;
+			num_before += c;
+		}
+
+		Integer[] output = new Integer[A.size()];
+		for (int i = 0; i < n; i++) {
+			int item = A.get(i);
+			output[count[item]] = item;
+			count[item]++;
+		}
+
+		ArrayList<Integer> out = new ArrayList<Integer>();
+		Collections.addAll(out, output);
+		return out;
 	}
 
 

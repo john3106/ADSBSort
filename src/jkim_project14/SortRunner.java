@@ -35,7 +35,46 @@ public class SortRunner {
 		scanner.close();
 	}
 
+	private ArrayList<Integer> getIntegerArray(ArrayList<String> stringArray) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		for(String stringValue : stringArray) {
+			try {
+				//Convert String to Integer, and store it into integer array list.
+				result.add(Integer.parseInt(stringValue));
+			} catch(NumberFormatException nfe) {
+				//System.out.println("Could not parse " + nfe);
+				System.out.println("NumberFormat: " + "Parsing failed! " + stringValue + " can not be an integer");
+			}
+		}
+		return result;
+	}
+
+	private static ArrayList<Integer> getNumericData(String fileName) throws IOException {
+		Path path = Paths.get(fileName);
+		Scanner scanner = new Scanner(path);
+		System.out.println("Read text numeric file using Scanner");
+
+		ArrayList<Integer> data = new ArrayList<Integer>();
+		// read line by line
+		while (scanner.hasNextFloat()) {
+			// process each line
+			Float val = scanner.nextFloat();
+			data.add(Math.round(Math.abs(val)));
+		}
+		return data;
+	}
+
 	public static void main(String[] args) {
+		try {
+			ArrayList<Integer> data = getNumericData("numbers.txt");
+			System.out.println(data.subList(0, 10));
+
+			ArrayList<Integer> results = Sort.countingSort(data);
+			System.out.println(results.subList(0, 10));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		arrList2d.add(new ArrayList<String>());
 		arrList2d.add(new ArrayList<String>());
 		try {

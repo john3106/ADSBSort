@@ -81,12 +81,6 @@ public class SortRunner {
 			long endTime = System.nanoTime();
 			System.out.println("The "+algName+" algorithm took "+ (endTime-startTime) + " nanoseconds to run");
 			arrStats.add(algName+": "+(endTime-startTime));
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		
 		int counterSort = 7;
@@ -131,14 +125,11 @@ public class SortRunner {
 			long endTime = System.nanoTime();
 			System.out.println("The "+algName+" algorithm took "+ (endTime - startTime) + " nanoseconds to run");
 			arrStats.add(algName+": "+(endTime-startTime));
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 		}
-		System.out.println(arrStats);
+		for (int k = 0; k < arrStats.size(); k++) {
+			System.out.println(arrStats.get(k));
+		}
 
 	}
 }

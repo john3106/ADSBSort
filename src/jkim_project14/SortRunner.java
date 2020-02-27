@@ -12,6 +12,7 @@ public class SortRunner {
 
 	private static String[] arr1;
 	private static int counter = 0;
+	private static ArrayList<String> arrStats = new ArrayList<String>();
 	private static ArrayList<String> arrList = new ArrayList<String>();
 	private static ArrayList<ArrayList<String>> arrList2d = new ArrayList<ArrayList<String>>();	
 
@@ -78,7 +79,7 @@ public class SortRunner {
 		arrList2d.add(new ArrayList<String>());
 		arrList2d.add(new ArrayList<String>());
 		try {
-			readUsingScanner("source.txt");
+			readUsingScanner("words.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -88,7 +89,7 @@ public class SortRunner {
 		
 		try {
 			counter = 1;
-			readUsingScanner("words.txt");
+			readUsingScanner("source.txt");
 		}	catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -99,80 +100,75 @@ public class SortRunner {
 		Arrays.sort(arr1);
 		System.out.println("Array length: " + arr1.length); // Arrays.toString(arr1));
 
-
+		int counterSearch = 2;
+		String algName = "";
 		String word = "african wild dog";
-		System.out.println("Linear Search: " + Sort.linearSearch(arrList, word));
-		System.out.println("Binary Search: " + Sort.binarySearch(arrList, 0, arrList.size() - 1, word));
-		System.out.println("Jump Search: " + Sort.jumpSearch(arr1, word));
-
-		// Randomize list for sorting methods
-		// Collections.shuffle(arrList);
-		// String[] arrShuffle = arrList.toArray(new String[] {});
-		System.out.println("\n\n\n");
-		Collections.shuffle(arrList);
+		for (int i = 0; i <= counterSearch; i++) {
+			long startTime = System.nanoTime();
+			if (i == 0) {
+				System.out.println("Linear Search: " + Sort.linearSearch(arrList, word));
+				algName = "Linear Search";
+			}
+			else if (i == 1) {
+				System.out.println("Binary Search: " + Sort.binarySearch(arrList, 0, arrList.size() - 1, word));
+				algName = "Binary Search";
+			}
+			else if (i == 2) {
+				System.out.println("Jump Search: " + Sort.jumpSearch(arr1, word));
+				algName = "Jump Search";
+			}
+			long endTime = System.nanoTime();
+			System.out.println("The "+algName+" algorithm took "+ (endTime-startTime) + " nanoseconds to run");
+			arrStats.add(algName+": "+(endTime-startTime));
+		}
+		
+		int counterSort = 7;
 		System.out.println(arrList+"\n");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for (int j = 0; j <= counterSort; j++) {
+			// Randomize list for sorting methods
+			// Collections.shuffle(arrList);
+			// String[] arrShuffle = arrList.toArray(new String[] {});
+			Collections.shuffle(arrList);
+			long startTime = System.nanoTime();
+			if (j == 0) {
+				System.out.println("Bubble Sort: "+(Sort.bubbleSort(arrList, "descending")));
+				algName = "Bubble Sort";
+			}
+			else if (j == 1) {
+				Sort.mergeSort(arrList, arrList.size(), "descending");
+				System.out.println("Merge Sort: "+arrList);
+				algName = "Merge Sort";
+			}
+			else if (j == 2) {
+				System.out.println("Quick Sort: "+ Sort.quicksort(arrList, 0, arrList.size() - 1));
+				algName = "Quick Sort";
+			}
+			else if (j == 3) {
+				System.out.println("Selection Sort: "+Sort.selectionSort(arrList));
+				algName = "Selection Sort";
+			}
+			else if (j == 4) {
+				System.out.println("Insertion Sort: "+Sort.insertionSort(arrList,  "descending"));
+				algName = "Insertion Sort";
+			}
+			else if (j == 5) {
+				Collections.shuffle(arrList2d.get(0));
+				Collections.shuffle(arrList2d.get(1));
+				System.out.println(arrList2d);
+				System.out.println("Gnome Sort: "+Sort.gnomeSort(arrList2d, "descending"));
+				algName = "Gnome Sort";
+			}
+			else {
+				System.out.println("hi");
+			}
+			long endTime = System.nanoTime();
+			System.out.println("The "+algName+" algorithm took "+ (endTime - startTime) + " nanoseconds to run");
+			arrStats.add(algName+": "+(endTime-startTime));
+
 		}
-		
-		System.out.println("Bubble Sort: ");
-		Collections.shuffle(arrList);
-		System.out.println((Sort.bubbleSort(arrList, "descending")));
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for (int k = 0; k < arrStats.size(); k++) {
+			System.out.println(arrStats.get(k));
 		}
-		
-		System.out.println("Merge Sort: ");
-		Collections.shuffle(arrList);
-		Sort.mergeSort(arrList, arrList.size(), "descending");
-		System.out.println(arrList);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("QuickSort: ");
-		Collections.shuffle(arrList);
-		System.out.println(Sort.quicksort(arrList, 0, arrList.size() - 1));
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("Selection Sort: ");
-		Collections.shuffle(arrList);
-		System.out.println(Sort.selectionSort(arrList));
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("Insertion Sort: ");
-		Collections.shuffle(arrList);
-		System.out.println(Sort.insertionSort(arrList, "descending"));
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("Gnome Sort: ");
-		Collections.shuffle(arrList2d.get(0));
-		Collections.shuffle(arrList2d.get(1));
-		System.out.println(arrList2d);
-		System.out.println(Sort.gnomeSort(arrList2d, "descending"));
+
 	}
 }

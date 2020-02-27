@@ -160,8 +160,8 @@ public class Sort {
 
 	}
 	
+
 	static ArrayList<ArrayList<String>> gnomeSort(ArrayList<ArrayList<String>> arr, String k) {
-		int index = 0;
 		int multiplier = 0;
 		if (k.equalsIgnoreCase("descending")) {
 			multiplier = -1;
@@ -169,6 +169,7 @@ public class Sort {
 			multiplier = 1;
 		}
 		for (int i = 0; i < 2; i++) {
+			int index = 0;
 			int length = arr.get(i).size();
 			while (index < length) {
 				if (index == 0) {
@@ -188,8 +189,8 @@ public class Sort {
 			}
 		}
 		return arr;
-		
 	}
+		
 
 	private static int toIndex(String in) {
 		int orig = in.toLowerCase().charAt(0) - 97;

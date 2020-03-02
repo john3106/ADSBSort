@@ -100,7 +100,7 @@ public class SortRunner {
 		Arrays.sort(arr1);
 		System.out.println("Array length: " + arr1.length); // Arrays.toString(arr1));
 
-		int counterSearch = 3;
+		int counterSearch = 4;
 		String algName = "";
 //		String word = "african wild dog";
 		String word = "more";
@@ -121,12 +121,17 @@ public class SortRunner {
 				System.out.println("Exponential Search: " + Sort.exponentialSearch(arrList, word));
 				algName = "Exponential Search";
 			}
+			
+			else if (i == 4) {
+				System.out.println("Linear Search 2d: "+Sort.linearSearch2d(arrList2d, "whale"));
+				algName = "Linear Search 2d";
+			}
 			long endTime = System.nanoTime();
 			System.out.println("The "+algName+" algorithm took "+ (endTime-startTime) + " nanoseconds to run");
 			arrStats.add(algName+": "+(endTime-startTime));
 		}
 		
-		int counterSort = 8;
+		int counterSort = 5;
 		System.out.println(arrList+"\n");
 		for (int j = 0; j <= counterSort; j++) {
 			// Randomize list for sorting methods
@@ -164,9 +169,6 @@ public class SortRunner {
 				System.out.println(arrList2d);
 				System.out.println("Gnome Sort: "+Sort.gnomeSort(arrList2d, "descending"));
 				algName = "Gnome Sort";
-			}
-			else {
-				System.out.println("hi");
 			}
 			long endTime = System.nanoTime();
 			System.out.println("The "+algName+" algorithm took "+ (endTime - startTime) + " nanoseconds to run");

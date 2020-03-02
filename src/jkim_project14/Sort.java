@@ -17,6 +17,17 @@ public class Sort {
         }
         return -1;
     }
+    
+    static String linearSearch2d(ArrayList<ArrayList<String>> arr, String word) {
+    	for (int i = 0; i < arr.size(); i++) {
+    		for (int j = 0; j < arr.get(i).size(); j++) {
+    			if (arr.get(i).get(j).equalsIgnoreCase(word)) {
+    				return (i+", "+j);
+    			}
+    		}
+    	}
+    	return "-1";
+    }
 
     static int binarySearch(ArrayList<String> arrList, int start, int end, String word) {
         if (start <= end) {

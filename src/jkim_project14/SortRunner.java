@@ -100,9 +100,10 @@ public class SortRunner {
 		Arrays.sort(arr1);
 		System.out.println("Array length: " + arr1.length); // Arrays.toString(arr1));
 
-		int counterSearch = 2;
+		int counterSearch = 3;
 		String algName = "";
-		String word = "african wild dog";
+//		String word = "african wild dog";
+		String word = "more";
 		for (int i = 0; i <= counterSearch; i++) {
 			long startTime = System.nanoTime();
 			if (i == 0) {
@@ -116,13 +117,16 @@ public class SortRunner {
 			else if (i == 2) {
 				System.out.println("Jump Search: " + Sort.jumpSearch(arr1, word));
 				algName = "Jump Search";
+			} else if (i == 3) {
+				System.out.println("Exponential Search: " + Sort.exponentialSearch(arrList, word));
+				algName = "Exponential Search";
 			}
 			long endTime = System.nanoTime();
 			System.out.println("The "+algName+" algorithm took "+ (endTime-startTime) + " nanoseconds to run");
 			arrStats.add(algName+": "+(endTime-startTime));
 		}
 		
-		int counterSort = 7;
+		int counterSort = 8;
 		System.out.println(arrList+"\n");
 		for (int j = 0; j <= counterSort; j++) {
 			// Randomize list for sorting methods
@@ -140,16 +144,19 @@ public class SortRunner {
 				algName = "Merge Sort";
 			}
 			else if (j == 2) {
-				System.out.println("Quick Sort: "+ Sort.quicksort(arrList, 0, arrList.size() - 1));
+				System.out.println("Quick Sort: "+ Sort.quicksort(arrList, 0, arrList.size() - 1, "descending"));
 				algName = "Quick Sort";
 			}
 			else if (j == 3) {
-				System.out.println("Selection Sort: "+Sort.selectionSort(arrList));
+				System.out.println("Selection Sort: "+Sort.selectionSort(arrList, "descending"));
 				algName = "Selection Sort";
 			}
 			else if (j == 4) {
 				System.out.println("Insertion Sort: "+Sort.insertionSort(arrList,  "descending"));
 				algName = "Insertion Sort";
+			} else if (j == 5) {
+				System.out.println("Bucket Sort: "+Sort.bucketSort(arrList,  "descending"));
+				algName = "Bucket Sort";
 			}
 			else if (j == 5) {
 				Collections.shuffle(arrList2d.get(0));
